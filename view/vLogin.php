@@ -14,6 +14,5 @@
 
         <div>
             <button type="submit" name="IniciarSesion">Iniciar sesión</button>
-            <!--<button type="submit" name="Registrarse">Registro</button>-->
         </div>
     </form>

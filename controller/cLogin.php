@@ -1,27 +1,4 @@
 <?php
-
-if (isset($_REQUEST['idiomaElegido'])) { // si se ha pulsado el botton de idiomaElegido
-    setcookie('idioma', $_REQUEST['idiomaElegido'], time() + 2592000); // modifica la cookie 'idioma' con el valor recibido del formulario para 30 dias
-    header('Location: index.php');
-    exit;
-}
-
-if (isset($_REQUEST['Registrarse'])) { // si se ha pulsado el boton de registrarse
-    $_SESSION['paginaEnCurso'] = $controladores['registro']; // guardamos en la variable de sesion 'pagina' la ruta del controlador del registro
-    
-    header('Location: index.php');
-    exit;
-} else {
-
-define("OBLIGATORIO", 1); // defino e inicializo la constante a 1 para los campos que son obligatorios
-
-$entradaOK = true;
-
-$aErrores = [ //declaro e inicializo el array de errores
-    'CodUsuario' => null,
-    'Password' => null
-];
-
 if (isset($_REQUEST["IniciarSesion"])) { // comprueba que el usuario le ha dado a al boton de IniciarSesion y valida la entrada de todos los campos
     $aErrores['CodUsuario'] = validacionFormularios::comprobarAlfaNumerico($_REQUEST['CodUsuario'], 15, 3, OBLIGATORIO); // comprueba que la entrada del codigo de usuario es correcta
 
@@ -53,8 +30,6 @@ if ($entradaOK) { // si la entrada esta bien recojo los valores introducidos y h
 }
 
 $vistaEnCurso = $vistas['login']; // guardamos en la variable vistaEnCurso la vista que queremos implementar
-
-}
 
 require_once $vistas['layout'];
 ?> 

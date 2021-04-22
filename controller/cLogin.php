@@ -1,4 +1,13 @@
 <?php
+define("OBLIGATORIO", 1); // defino e inicializo la constante a 1 para los campos que son obligatorios
+
+$entradaOK = true;
+
+$aErrores = [//declaro e inicializo el array de errores
+    'CodUsuario' => null,
+    'Password' => null
+];
+
 if (isset($_REQUEST["IniciarSesion"])) { // comprueba que el usuario le ha dado a al boton de IniciarSesion y valida la entrada de todos los campos
     $aErrores['CodUsuario'] = validacionFormularios::comprobarAlfaNumerico($_REQUEST['CodUsuario'], 15, 3, OBLIGATORIO); // comprueba que la entrada del codigo de usuario es correcta
 

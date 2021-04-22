@@ -15,4 +15,3 @@ $vistas = [
     "login" => "view/vLogin.php",
     "inicio" => "view/vInicio.php"
 ];
-?>

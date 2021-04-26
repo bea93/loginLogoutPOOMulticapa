@@ -13,6 +13,13 @@ if (isset($_REQUEST['cerrarSesion'])) {
     header("Location: index.php"); 
     exit;
 }
+//Si se ha pulsado el botón de detalle
+if (isset($_REQUEST['detalle'])) {
+    //Guardamos en la variable de sesión 'pagina' la ruta del controlador del registro
+    $_SESSION['paginaEnCurso'] = $controladores['detalle']; 
+    header('Location: index.php');
+    exit;
+}
 
 $oUsuarioActual = $_SESSION['usuarioDAW2LoginLogoffMulticapaPOO'];
 

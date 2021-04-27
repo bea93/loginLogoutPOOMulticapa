@@ -1,7 +1,7 @@
 <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Inicio</h2>
 <article>
     <h3>¡Bienvenid@ <?php echo $descUsuario; ?>!</h3>
-    <h4><?php echo ($numConexiones > 1) ? "Te has conectado " . $numConexiones . " veces.<br>La última conexión fue el " . date('d/m/Y', $ultimaConexion) . " a las " . date('H:i:s', $ultimaConexion)  : "Esta es la primera vez que te conectas." ?></h4>
+    <h4><?php echo ($numConexiones > 1) ? "Te has conectado " . $numConexiones . " veces.<br>La última conexión fue el " . date('d/m/Y', $ultimaConexionAnterior) . " a las " . date('H:i:s', $ultimaConexionAnterior)  : "Esta es la primera vez que te conectas." ?></h4>
 </article>
 <div>
     <form name="logout" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">

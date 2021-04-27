@@ -41,8 +41,10 @@ if (isset($_REQUEST["IniciarSesion"])) {
 }
 
 //Si la entrada está bien recojo los valores introducidos y hago su tratamiento
-if ($entradaOK) { 
-    //Guarda en la session el objeto usuario
+if ($entradaOK) {
+    
+    $_SESSION['fechaHoraUltimaConexionAnterior'] = $oUsuario -> T01_FechaHoraUltimaConexion;
+    $oUsuario = UsuarioPDO::registrarUltimaConexion($oUsuario -> T01_CodUsuario);
     $_SESSION['usuarioDAW2LoginLogoffMulticapaPOO'] = $oUsuario;
     //Guardamos en la variable de sesión 'pagina' la ruta del controlador del inicio
     $_SESSION['paginaEnCurso'] = $controladores['inicio']; 

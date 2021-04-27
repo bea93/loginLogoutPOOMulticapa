@@ -26,7 +26,7 @@ $oUsuarioActual = $_SESSION['usuarioDAW2LoginLogoffMulticapaPOO'];
 //Variables que almacenan los datos del usuario sacadas de la BBDD
 $numConexiones = $oUsuarioActual->getNumConexiones();
 $descUsuario = $oUsuarioActual->getDescUsuario();
-$ultimaConexion = $oUsuarioActual->getFechaHoraUltimaConexion();
+$ultimaConexionAnterior = $_SESSION['fechaHoraUltimaConexionAnterior'];
 $imagenUsuario = $oUsuarioActual->getImagenPerfil();
 
 //Guardamos en la variable vistaEnCurso la vista que queremos implementar

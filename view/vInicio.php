@@ -7,5 +7,6 @@
     <form name="logout" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <button class="logout" type="submit" name='cerrarSesion'>Cerrar Sesión</button>
         <button class="logout" type="submit" name='detalle'>Detalle</button>
+        <button class="logout" type="submit" name='editar'>Editar Perfil</button>
     </form>
 </div>

@@ -20,6 +20,13 @@ if (isset($_REQUEST['detalle'])) {
     header('Location: index.php');
     exit;
 }
+//Si se ha pulsado el botón de editar
+if (isset($_REQUEST['editar'])) {
+    //Guardamos en la variable de sesión 'pagina' la ruta del controlador del registro
+    $_SESSION['paginaEnCurso'] = $controladores['editar']; 
+    header('Location: index.php');
+    exit;
+}
 
 $oUsuarioActual = $_SESSION['usuarioDAW2LoginLogoffMulticapaPOO'];
 

@@ -9,7 +9,8 @@ $controladores = [
     "login" => "controller/cLogin.php",
     "inicio" => "controller/cInicio.php",
     "registro" => "controller/cRegistro.php",
-    "detalle" => "controller/cDetalle.php"
+    "detalle" => "controller/cDetalle.php",
+    "editar" => "controller/cEditar.php"
 ];
 
 $vistas = [
@@ -17,5 +18,6 @@ $vistas = [
     "login" => "view/vLogin.php",
     "inicio" => "view/vInicio.php",
     "registro" => "view/vRegistro.php",
-    "detalle" => "view/vDetalle.php"
+    "detalle" => "view/vDetalle.php",
+    "editar" => "view/vEditar.php"
 ];

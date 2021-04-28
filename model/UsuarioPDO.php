@@ -3,7 +3,7 @@
 /**
  * Class UsuarioPDO
  *
- * Clase cuyos metodos hacen consultas a la tabla T_01Usuario de la base de datos
+ * Clase cuyos metodos hacen consultas a la tabla T01_Usuario de la base de datos
  * 
  * @author Cristina Nuñez y Javier Nieto
  * @since 1.0
@@ -13,27 +13,30 @@
 class UsuarioPDO{
     
     /**
-     * Metodo validarUsuario()
+     * Método validarUsuario()
      * 
-     * Metodo que valida si existe un determinado usuario y password en la base de datos.
-     * Si existe el usuario actualiza la ultima conexion y el numero de conexiones de ese usuario y lo devuelve.
+     * Método que valida si existe un determinado usuario y password en la base de datos.
+     * Si existe el usuario actualiza la última conexión y el número de conexiones de ese usuario y lo devuelve.
      * Si no existe el usuario devuelve null.
      * 
-     * @param string $codUsuario codigo del usuario
+     * @param string $codUsuario código del usuario
      * @param string $password password del usuario
-     * @return mixed[] Si existe, un array con un objeto de tipo Usuario con los datos de la base de datos y la fechaHoraUltimaConexionAnterior. Si no existe null.
+     * @return null|\Usuario devuelve un objeto de tipo Usuario con los datos guardados en la base de datos y null si no se ha encontrado el usuario en la BBDD
      */
     public static function validarUsuario($codUsuario, $password){
-        $oUsuario = null; // inicializo la variable que tendrá el objeto de clase usuario en el caso de que se encuentre en la base de datos
+        //Inicializo la variable que tendrá el objeto de clase usuario en el caso de que se encuentre en la base de datos
+        $oUsuario = null; 
 
-        // comprueba que el usuario y el password introducido existen en la base de datos
+        //Comprueba que el usuario y el password introducido existen en la base de datos
         $sentenciaSQL = "Select * from T01_Usuario where T01_CodUsuario=? and T01_Password=?";
-        $passwordEncriptado=hash("sha256", ($codUsuario.$password)); // enctripta el password pasado como parametro
-        $resultadoConsulta = DBPDO::ejecutaConsulta($sentenciaSQL, [$codUsuario,$passwordEncriptado]); // guardo en la variable resultado el resultado que me devuelve la funcion que ejecuta la consulta con los paramtros pasados por parmetro
+        //Encripta el password pasado como parámetro
+        $passwordEncriptado=hash("sha256", ($codUsuario.$password));
+        //Guardo en la variable resultadoConsulta el resultado de la consulta con los parámetros pasados
+        $resultadoConsulta = DBPDO::ejecutaConsulta($sentenciaSQL, [$codUsuario,$passwordEncriptado]); 
         
-        if($resultadoConsulta->rowCount()>0){ // si la consulta me devuleve algun resultado
-            $oRegistroUsuario = $resultadoConsulta->fetchObject(); // guardo en la variable el resultado de la consulta en forma de objeto
-            // instanciacion de un objeto Usuario con los datos del usuario
+        //Si la consulta me devuelve algún resultado lo guardo en una variable para instanciar un nuevo objeto Usuario con esos datos
+        if($resultadoConsulta->rowCount()>0){ 
+            $oRegistroUsuario = $resultadoConsulta->fetchObject();
             $oUsuario = new Usuario($oRegistroUsuario->T01_CodUsuario, $oRegistroUsuario->T01_Password, $oRegistroUsuario->T01_DescUsuario, $oRegistroUsuario->T01_NumConexiones, $oRegistroUsuario->T01_FechaHoraUltimaConexion, $oRegistroUsuario->T01_Perfil, $oRegistroUsuario->T01_ImagenUsuario);
         }
         
@@ -42,20 +45,22 @@ class UsuarioPDO{
 
 
     /**
-     * Metodo altaUsuario()
+     * Método altaUsuario()
      * 
-     * Metodo que da de alta en la base de datos a un nuevo usuario
+     * Método que da de alta en la base de datos a un nuevo usuario
      * 
-     * @param string $codUsuario codigo del usuario
+     * @param string $codUsuario código del usuario
      * @param string $password password del usuario
-     * @param string $descripcion descripcion del usuario
+     * @param string $descripcion descripción del usuario
      * @return null|\Usuario devuelve un objeto de tipo Usuario con los datos guardados en la base de datos y null si no se ha podido dar de alta
      */
     public static function altaUsuario($codUsuario, $password, $descUsuario){
-        $oUsuario = null; // inicializo la variable que tendrá el objeto de clase usuario en el caso de que se encuentre en la base de datos
+        //Inicializo la variable que tendrá el objeto de clase usuario en el caso de que se encuentre en la base de datos
+        $oUsuario = null;
 
         $sentenciaSQL = "Insert into T01_Usuario (T01_CodUsuario, T01_DescUsuario, T01_Password , T01_NumConexiones, T01_FechaHoraUltimaConexion) values (?,?,?,1,?)";
-        $passwordEncriptado=hash("sha256", ($codUsuario.$password)); // enctripta el password pasado como parametro
+        //Encripta el password pasado como parámetro
+        $passwordEncriptado=hash("sha256", ($codUsuario.$password));
         $resultadoConsulta = DBPDO::ejecutaConsulta($sentenciaSQL, [$codUsuario, $descUsuario, $passwordEncriptado,  time()]);
 
         if($resultadoConsulta){
@@ -67,15 +72,16 @@ class UsuarioPDO{
 
     
     /**
-     * Metodo registrarUltimaConexion()
+     * Método registrarUltimaConexion()
      *
-     * Metodo que actualiza la fechaHoraUltimaConexion y el numero de conexiones del usuario pasado como parametro
+     * Método que actualiza la fechaHoraUltimaConexion y el número de conexiones del usuario pasado como parámetro
      * 
      * @param  string $codUsuario codigo del usuario al que queremos actualizar la ultima conexion
      * @return null|\Usuario devuelve un objeto de tipo Usuario con los datos guardados en la base de datos y null si no se ha podido actualizar la ultima conexion
      */
     public static function registrarUltimaConexion($codUsuario){
-        $oUsuario = null; // inicializo la variable que tendrá el objeto de clase usuario en el caso de que se encuentre en la base de datos
+        //Inicializo la variable que tendrá el objeto de clase usuario en el caso de que se encuentre en la base de datos
+        $oUsuario = null;
 
         $sentenciaSQLActualizacionFechaConexion = "Update T01_Usuario set T01_NumConexiones = T01_NumConexiones+1, T01_FechaHoraUltimaConexion=? where T01_CodUsuario=?";
         $resultadoActualizacionFechaConexion = DBPDO::ejecutaConsulta($sentenciaSQLActualizacionFechaConexion, [time(),$codUsuario]);
@@ -89,18 +95,19 @@ class UsuarioPDO{
 
     
     /**
-     * Metodo modificarUsuario()
+     * Método modificarUsuario()
      *
-     * Metodo que modifica el valor de la descripcion del usuarios. 
-     * Si el valor del parametro de la imagen no es null modifica tambien la imagen de perfil del usuario.
+     * Método que modifica el valor de la descripción del usuario. 
+     * Si el valor del parámetro de la imagen no es null modifica también la imagen de perfil del usuario.
      * 
-     * @param  string $codUsuario codigo del usuario que quremos modificar
-     * @param  string $descUsuario nueva descripcion del usuario
+     * @param  string $codUsuario código del usuario que queremos modificar
+     * @param  string $descUsuario nueva descripción del usuario
      * @param  string $imagenPerfil nueva imagen de perfil
      * @return null|\Usuario devuelve un objeto de tipo Usuario con los datos guardados en la base de datos y null si no se ha podido modificar
      */
     public static function modificarUsuario($codUsuario,$descUsuario,$imagenPerfil){
-        $oUsuario = null; // inicializo la variable que tendrá el objeto de clase usuario en el caso de que se encuentre en la base de datos
+        //Inicializo la variable que tendrá el objeto de clase usuario en el caso de que se encuentre en la base de datos
+        $oUsuario = null;
 
         $sentenciaSQL = "Update T01_Usuario set T01_DescUsuario=?". (($imagenPerfil!=null) ? ", T01_ImagenUsuario=?" : "") . " where T01_CodUsuario=?";
 
@@ -109,10 +116,10 @@ class UsuarioPDO{
         }else{
             $parametros = [$descUsuario, $codUsuario];
         }
-
-        $resultadoConsulta = DBPDO::ejecutaConsulta($sentenciaSQL, $parametros); // Ejecutamos la consulta y almacenamos el resultado en la variable resultadoConsulta
         
-        if($resultadoConsulta){ // si se ha ejecutado la consulta correctamente
+        $resultadoConsulta = DBPDO::ejecutaConsulta($sentenciaSQL, $parametros); 
+        
+        if($resultadoConsulta){
             $oUsuario = self::buscarUsuarioPorCod($codUsuario);
         }
 
@@ -121,19 +128,21 @@ class UsuarioPDO{
 
     
     /**
-     * Metodo cambiarPassword()
+     * Método cambiarPassword()
      * 
-     * Metodo que cambia el password del usuario pasado como parametro
+     * Método que cambia el password del usuario pasado como parámetro
      *
-     * @param  string $codUsuario codigo de usuario del usuario al que queremos cambiar el password
+     * @param  string $codUsuario código del usuario al que queremos cambiar el password
      * @param  string $passwordNueva nueva password que se quiere poner al usuario
      * @return null|\Usuario devuelve un objeto de tipo Usuario con los datos guardados en la base de datos y null si no se ha podido modificar el password
      */
     public static function cambiarPassword($codUsuario, $passwordNueva){
-        $oUsuario = null; // inicializo la variable que tendrá el objeto de clase usuario en el caso de que se encuentre en la base de datos
+        //Inicializo la variable que tendrá el objeto de clase usuario en el caso de que se encuentre en la base de datos
+        $oUsuario = null;
 
         $sentenciaSQL = "Update T01_Usuario set T01_Password=? where T01_CodUsuario=?";
-        $passwordEncriptado = hash("sha256", $codUsuario.$passwordNueva); // encripta el password pasado como parametro
+        //Encripta el password pasado como parametro
+        $passwordEncriptado = hash("sha256", $codUsuario.$passwordNueva);
         $resultadoConsulta = DBPDO::ejecutaConsulta($sentenciaSQL, [$passwordEncriptado,$codUsuario]);
 
         if($resultadoConsulta){
@@ -145,44 +154,48 @@ class UsuarioPDO{
 
         
     /**
-     * Metodo borrarUsuario()
+     * Método borrarUsuario()
      * 
-     * Metodo que elimina un usuario de la base de datos
+     * Método que elimina un usuario de la base de datos
      *
-     * @param  string $codUsuario codigo del usuario que queremos borrar
+     * @param  string $codUsuario código del usuario que queremos borrar
      * @return boolean true si se ha borrado el usuario y false en caso contrario
      */
     public static function borrarUsuario($codUsuario){
-        $usuarioEliminado = false; // Inicializamos la variable usuarioEliminado a false
+        //Inicializamos la variable usuarioEliminado a false
+        $usuarioEliminado = false; 
 
         $sentenciaSQL = "Delete from T01_Usuario where T01_CodUsuario=?";
-        $resultadoConsulta = DBPDO::ejecutaConsulta($sentenciaSQL, [$codUsuario]); // Ejecutamos la consulta y almacenamos el resultado en la variable resultadoConsulta
+        $resultadoConsulta = DBPDO::ejecutaConsulta($sentenciaSQL, [$codUsuario]);
 
-        if($resultadoConsulta){ // Si se ha realizado la consulta correctamente
-            $usuarioEliminado = true; // Cambiamos el valor de la variable usuarioEliminado a true 
+        // Si se ha realizado la consulta correctamente cambiamos el valor de $usuarioEliminado a true
+        if($resultadoConsulta){ 
+            $usuarioEliminado = true;
         }
 
-        return $usuarioEliminado; // devolvemos la variable usuarioEliminado
+        return $usuarioEliminado;
     }
 
 
     /**
-     * Metodo validarCodNoExiste()
+     * Método validarCodNoExiste()
      * 
-     * Metodo que comprueba si un usuario existe o no en la base de datos 
+     * Método que comprueba si un usuario existe o no en la base de datos 
      * 
-     * @param string $codUsuario codigo de usuario que queremos comprobar
+     * @param string $codUsuario código de usuario que queremos comprobar
      * @return boolean devuelve true si no existe y false en caso contrario
      */
     public static function validarCodNoExiste($codUsuario){
-        $usuarioNoExiste = true; // inicializo la variable booleana a true
+        //Inicializo la variable booleana a true
+        $usuarioNoExiste = true; 
         
-        // comprueba que el usuario introducido existen en la base de datos
+        //Comprueba que el usuario introducido existe en la base de datos
         $sentenciaSQL = "Select * from T01_Usuario where T01_CodUsuario=?";
-        $resultadoConsulta = DBPDO::ejecutaConsulta($sentenciaSQL, [$codUsuario]); // guardo en la variabnle resultado el resultado que me devuelve la funcion que ejecuta la consulta con los paramtros pasados por parmetro
+        $resultadoConsulta = DBPDO::ejecutaConsulta($sentenciaSQL, [$codUsuario]);
         
-        if($resultadoConsulta->rowCount()>0){ // si la consulta me devuelve algun resultado
-            $usuarioNoExiste = false; // cambiamos el valor la variable booleana a false
+        //Si la consulta me devuelve algun resultado cambiamos el valor de $usuarioNoExiste a false
+        if($resultadoConsulta->rowCount()>0){ 
+            $usuarioNoExiste = false;
         }
         
         return $usuarioNoExiste;
@@ -190,22 +203,23 @@ class UsuarioPDO{
 
         
     /**
-     * Metodo buscarUsuarioPorCod()
+     * Método buscarUsuarioPorCod()
      *
-     * Metodo que obtiene todos los datos de un usuario de la base de datos
+     * Método que obtiene todos los datos de un usuario de la base de datos
      * 
-     * @param  string $codUsuario codigo del usuario del que queremos obtener los datos
-     * @return null|\Usuario devuelve un objeto de tipo Usuario con los datos guardados en la base de datos y null si no se ha podido modificar el password
+     * @param  string $codUsuario código del usuario del que queremos obtener los datos
+     * @return null|\Usuario devuelve un objeto de tipo Usuario con los datos guardados en la base de datos y null si no se ha encontrado el usuario en la BBDDs
      */
     public static function buscarUsuarioPorCod($codUsuario){
-        $oUsuario = null; // inicializo la variable que tendrá el objeto de clase usuario en el caso de que se encuentre en la base de datos
+        //Inicializo la variable que tendrá el objeto de clase usuario en el caso de que se encuentre en la base de datos
+        $oUsuario = null; 
 
         $sentenciaSQLDatosUsuario = "Select * from T01_Usuario where T01_CodUsuario=?";
-        $resultadoDatosUsuario = DBPDO::ejecutaConsulta($sentenciaSQLDatosUsuario, [$codUsuario]); // guardo en la variabnle resultado el resultado que me devuelve la funcion que ejecuta la consulta con los paramtros pasados por parmetro
+        $resultadoDatosUsuario = DBPDO::ejecutaConsulta($sentenciaSQLDatosUsuario, [$codUsuario]);
         
-        if($resultadoDatosUsuario->rowCount()>0){ // si la consulta me devuelve algun resultado
-            $oUsuarioConsulta = $resultadoDatosUsuario->fetchObject(); // guardo en la variable el resultado de la consulta en forma de objeto
-            // instanciacion de un objeto Usuario con los datos del usuario
+        //Si la consulta me devuelve algún resultado lo guardo en una variable para instanciar un nuevo objeto Usuario con esos datos
+        if($resultadoDatosUsuario->rowCount()>0){
+            $oUsuarioConsulta = $resultadoDatosUsuario->fetchObject();
             $oUsuario = new Usuario($oUsuarioConsulta->T01_CodUsuario, $oUsuarioConsulta->T01_Password, $oUsuarioConsulta->T01_DescUsuario, $oUsuarioConsulta->T01_NumConexiones, $oUsuarioConsulta->T01_FechaHoraUltimaConexion, $oUsuarioConsulta->T01_Perfil, $oUsuarioConsulta->T01_ImagenUsuario);
         }
 

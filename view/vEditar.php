@@ -28,5 +28,7 @@
                 ?>
                 <button class="logout" type="submit" name='Aceptar'>Aceptar</button>
                 <button class="logout" type="submit" name='Cancelar'>Cancelar</button>
+                <button class="logout" type="submit" name='CambiarPassword'>Cambiar Contraseña</button>
+                <button class="logout" type="submit" name='BorrarCuenta'>Borrar Cuenta</button>
     </fieldset>
 </form>

@@ -29,7 +29,7 @@ if (isset($_REQUEST["IniciarSesion"])) {
     }
     
     //Compruebo si hay algún mensaje de error en algún campo
-    if ($aErrores['CodUsuario'] != null || $aErrores['Password']!=null) {
+    if ($aErrores['CodUsuario'] != null || $aErrores['Password'] != null) {
         //Le doy el valor false a $entradaOK
         $entradaOK = false; 
         unset($_REQUEST);
@@ -43,8 +43,8 @@ if (isset($_REQUEST["IniciarSesion"])) {
 //Si la entrada está bien recojo los valores introducidos y hago su tratamiento
 if ($entradaOK) {
     
-    $_SESSION['fechaHoraUltimaConexionAnterior'] = $oUsuario -> T01_FechaHoraUltimaConexion;
-    $oUsuario = UsuarioPDO::registrarUltimaConexion($oUsuario -> T01_CodUsuario);
+    $_SESSION['fechaHoraUltimaConexionAnterior'] = $oUsuario ->getFechaHoraUltimaConexion();
+    $oUsuario = UsuarioPDO::registrarUltimaConexion($oUsuario ->getCodUsuario());
     $_SESSION['usuarioDAW2LoginLogoffMulticapaPOO'] = $oUsuario;
     //Guardamos en la variable de sesión 'pagina' la ruta del controlador del inicio
     $_SESSION['paginaEnCurso'] = $controladores['inicio']; 

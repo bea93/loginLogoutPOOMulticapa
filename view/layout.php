@@ -36,11 +36,15 @@
                 <h1 id="fh5co-logo"><a href="../../index.html"><img src="webroot/images/logo.png"></a></h1>
                 <nav id="fh5co-main-menu" role="navigation">
                     <ul>
-                        <li class="fh5co-active"><a href="../../index.html">Login/Logout Multicapa POO</a></li>
-                        <li><a href="https://github.com/bea93/loginLogoutPOOMulticapa/tree/developer" target="_blank">GitHub</a></li>
+                        <li class="fh5co-active">Login/Logout Multicapa POO</li>
                     </ul>
                 </nav>
                 <div class="fh5co-footer">
+                    <a href="https://github.com/bea93/loginLogoutPOOMulticapa/tree/developer" target="_blank"><p>GitHub</p></a>
+                    <a href="#" target="_blank"><p>Tecnologías Usadas</p></a>
+                    <a href="#" target="_blank"><p>PHPDoc</p></a>
+                    <a href="#" target="_blank"><p>RSS</p></a>
+                    <a href="#" target="_blank"><p>Doxygen</p></a>
                     <a href="http://daw213.sauces.local/index.html"><p>&copy; 2021 Beatriz Merino Macía.</p></a>
                 </div>
             </aside>

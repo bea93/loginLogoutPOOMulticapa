@@ -19,6 +19,12 @@ body {
   color: rgba(0, 0, 0, 0.5);
 }
 
+#tecnologias{
+    border: none;
+    background-color: transparent;
+    color: black;
+}
+
 .desactivado{
     background-color: silver;
 }
@@ -189,8 +195,8 @@ figure {
   -o-transform: scaleX(1);
   transform: scaleX(1);
 }
-#fh5co-aside #fh5co-main-menu ul li.fh5co-active a {
-  color: black;
+#fh5co-aside #fh5co-main-menu ul li.fh5co-active {
+  color: #1512da;
 }
 #fh5co-aside #fh5co-main-menu ul li.fh5co-active a:after {
   visibility: visible;
@@ -208,6 +214,10 @@ figure {
   width: 100%;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.6);
+}
+.fh5co-footer a{
+    color: black;
+    font-size: 1em;
 }
 @media screen and (max-width: 768px) {
   #fh5co-aside .fh5co-footer {

@@ -2,7 +2,7 @@
 //Si se ha pulsado Cancelar
 if(isset($_REQUEST['Cancelar'])){
     //Guardamos en la variable de sesión 'pagina' la ruta del controlador del login
-    $_SESSION['paginaEnCurso'] = $controladores['login']; 
+    $_SESSION['paginaEnCursoSinRegistro'] = $controladores['login']; 
     header('Location: index.php');
     exit;
 }

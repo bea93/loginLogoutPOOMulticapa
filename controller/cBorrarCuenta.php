@@ -12,6 +12,7 @@ $oUsuarioActual = $_SESSION['usuarioDAW2LoginLogoffMulticapaPOO'];
 //Variables que almacenan los datos del usuario
 $codUsuario = $oUsuarioActual->getCodUsuario();
 $descUsuario = $oUsuarioActual->getDescUsuario();
+$numConexiones = $oUsuarioActual->getNumConexiones();
 
 //Si se ha pulsado el botón Aceptar llamamos al método borrarUsuario y le pasamos el código del usuario para que ejecute el DELETE en la BBDD
 if(isset($_REQUEST['Aceptar'])){

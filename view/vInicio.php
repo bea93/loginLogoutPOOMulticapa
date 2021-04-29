@@ -8,5 +8,6 @@
         <button class="logout" type="submit" name='cerrarSesion'>Cerrar Sesión</button>
         <button class="logout" type="submit" name='detalle'>Detalle</button>
         <button class="logout" type="submit" name='editar'>Editar Perfil</button>
+        <button class="logout" type="submit" name='BorrarCuenta'>Borrar Cuenta</button>
     </form>
 </div>

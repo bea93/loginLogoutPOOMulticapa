@@ -18,14 +18,9 @@ body {
   line-height: 1.6;
   color: rgba(0, 0, 0, 0.5);
 }
-table{
-    margin: auto;
-}
-th{
-    padding-right: 10px;
-}
-td{
-    padding-right: 10px;
+
+.desactivado{
+    background-color: silver;
 }
 
 input{

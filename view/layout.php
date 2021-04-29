@@ -26,7 +26,6 @@
         <link rel="stylesheet" href="webroot/css/owl.theme.default.min.css">
         <!-- Theme style  -->
         <link href="webroot/css/style.css" rel="stylesheet" type="text/css"/>
-        <link href="webroot/estilo.css" rel="stylesheet" type="text/css"/>
         <!-- Modernizr JS -->
         <script src="webroot/js/modernizr-2.6.2.min.js"></script>
 
@@ -37,12 +36,12 @@
                 <h1 id="fh5co-logo"><a href="../../index.html"><img src="webroot/images/logo.png"></a></h1>
                 <nav id="fh5co-main-menu" role="navigation">
                     <ul>
-                        <li class="fh5co-active"><a href="../../index.html">Home</a></li>
-                        <li><a href="https://github.com/bea93/loginLogoutPOOMulticapa" target="_blank">GitHub</a></li>
+                        <li class="fh5co-active"><a href="../../index.html">Login/Logout Multicapa POO</a></li>
+                        <li><a href="https://github.com/bea93/loginLogoutPOOMulticapa/tree/developer" target="_blank">GitHub</a></li>
                     </ul>
                 </nav>
                 <div class="fh5co-footer">
-                    <p>&copy; 2021 Beatriz Merino Macía.</p>
+                    <a href="http://daw213.sauces.local/index.html"><p>&copy; 2021 Beatriz Merino Macía.</p></a>
                 </div>
             </aside>
             <div id="fh5co-main">

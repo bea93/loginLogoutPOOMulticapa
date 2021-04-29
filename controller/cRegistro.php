@@ -2,7 +2,7 @@
 //Si se ha pulsado Cancelar
 if(isset($_REQUEST['Cancelar'])){
     //Guardamos en la variable de sesión 'pagina' la ruta del controlador del login
-    $_SESSION['paginaEnCurso'] = $controladores['login']; 
+    $_SESSION['paginaEnCursoSinRegistro'] = $controladores['login']; 
     header('Location: index.php');
     exit;
 }
@@ -54,10 +54,10 @@ if (isset($_REQUEST["Registrarse"])) {
 if ($entradaOK) { 
     //Guardamos en la variable el resultado de la función que valida si existe un usuario con el código y password introducido
     $oUsuario = UsuarioPDO::altaUsuario($_REQUEST['CodUsuario'],$_REQUEST['Password'],$_REQUEST['DescUsuario']);
-    //Guarda en la sesión el objeto usuario
-    $_SESSION['usuarioDAW2LoginLogoffMulticapaPOO'] = $oUsuario;
     //Creamos la fecha y hora de la última conexión anterior
     $_SESSION['fechaHoraUltimaConexionAnterior'] = null;
+    //Guarda en la sesión el objeto usuario
+    $_SESSION['usuarioDAW2LoginLogoffMulticapaPOO'] = $oUsuario;
     //Guardamos en la variable de sesión 'pagina' la ruta del controlador del inicio
     $_SESSION['paginaEnCurso'] = $controladores['inicio']; 
     //Redirige al index.php

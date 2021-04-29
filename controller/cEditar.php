@@ -6,6 +6,13 @@ if(isset($_REQUEST['Cancelar'])){
     header('Location: index.php');
     exit;
 }
+//Si se ha pulsado el botón Cambiar contraseña
+if(isset($_REQUEST['CambiarPassword'])){
+    //Guardamos en la variable de sesión 'pagina' la ruta del controlador del editor de contraseña
+    $_SESSION['paginaEnCurso'] = $controladores['cambiarPassword']; 
+    header('Location: index.php');
+    exit;
+}
 
 //Definición y declaración de variables
 define("OBLIGATORIO", 1);
@@ -13,8 +20,6 @@ define("OPCIONAL", 0);
 
 $entradaOK = true;
 $errorDescripcion = "";
-$errorImagen = "";
-$imagenSubida = null;
 
 //Creación del objeto usuarioActual con los datos almacenados en la sesión
 $oUsuarioActual = $_SESSION['usuarioDAW2LoginLogoffMulticapaPOO'];
@@ -27,29 +32,12 @@ $descUsuario = $oUsuarioActual->getDescUsuario();
 if(isset($_REQUEST['Aceptar'])){
     $errorDescripcion = validacionFormularios::comprobarAlfaNumerico($_REQUEST['DescUsuario'], 255, 3, OBLIGATORIO);
 
-    //Si el usuario ha introducido una imagen
-    if($_FILES['imagen']['tmp_name']!=null){
-        //Almacenamos el tipo de la imagen
-        $tipo = $_FILES['imagen']['type'];
-        //Comprobamos que el tipo se encuentra entre las diferentes opciones
-        if (($tipo == "image/gif") || ($tipo == "image/jpeg") || ($tipo == "image/jpg") || ($tipo == "image/png")){
-            //Almacenamos el archivo convertido en una cadena
-            $imagenSubida = file_get_contents($_FILES['imagen']['tmp_name']);
-        }else{
-            $errorImagen="Formato incorrecto";
-        }
-    }
     // Recorremos los arrays de errores comprobando que los campos no estén vacíos
     if ($errorDescripcion != null) {
         //En caso de que haya algún error le asignamos a entradaOK el valor false para que vuelva a rellenar el formulario
         $entradaOK = false;
         //Limpiamos los campos del formulario
-        $_REQUEST['Descripcion']="";
-    }
-    
-    if ($errorImagen != null) {
-        //En caso de que haya algún error le asignamos a entradaOK el valor false para que vuelva a rellenar el formulario
-        $entradaOK = false; 
+        $_REQUEST['Descripcion'] = "";
     }
 }else{
     //Si el usuario no ha enviado el formulario asignamos a entradaOK el valor false para que rellene el formulario

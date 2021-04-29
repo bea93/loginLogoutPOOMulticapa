@@ -12,7 +12,7 @@ $aErrores = [
 //Si se ha pulsado el botón de registrarse
 if (isset($_REQUEST['Registrarse'])) { 
     //Guardamos en la variable de sesión 'pagina' la ruta del controlador del registro
-    $_SESSION['paginaEnCurso'] = $controladores['registro']; 
+    $_SESSION['paginaEnCursoSinRegistro'] = $controladores['registro']; 
     header('Location: index.php');
     exit;
 }

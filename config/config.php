@@ -12,7 +12,8 @@ $controladores = [
     "detalle" => "controller/cDetalle.php",
     "editar" => "controller/cEditar.php",
     "cambiarPassword" => "controller/cCambiarPassword.php",
-    "borrarCuenta" => "controller/cBorrarCuenta.php"
+    "borrarCuenta" => "controller/cBorrarCuenta.php",
+    "wip" => "controller/cWIP.php"
 ];
 
 $vistas = [
@@ -23,5 +24,6 @@ $vistas = [
     "detalle" => "view/vDetalle.php",
     "editar" => "view/vEditar.php",
     "cambiarPassword" => "view/vCambiarPassword.php",
-    "borrarCuenta" => "view/vBorrarCuenta.php"
+    "borrarCuenta" => "view/vBorrarCuenta.php",
+    "wip" => "view/vWIP.php"
 ];

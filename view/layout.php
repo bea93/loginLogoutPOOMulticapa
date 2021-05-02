@@ -40,12 +40,14 @@
                     </ul>
                 </nav>
                 <div class="fh5co-footer">
-                    <a href="https://github.com/bea93/loginLogoutPOOMulticapa/tree/developer" target="_blank"><p>GitHub</p></a>
-                    <a href="#" target="_blank"><p>Tecnologías Usadas</p></a>
-                    <a href="#" target="_blank"><p>PHPDoc</p></a>
-                    <a href="#" target="_blank"><p>RSS</p></a>
-                    <a href="#" target="_blank"><p>Doxygen</p></a>
-                    <a href="http://daw213.sauces.local/index.html"><p>&copy; 2021 Beatriz Merino Macía.</p></a>
+                    <form action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "post">
+                        <a href="https://github.com/bea93/loginLogoutPOOMulticapa/tree/developer" target="_blank"><p>GitHub</p></a>
+                        <input type="submit" class="botonesWIP" value="Tecnologías Usadas" name="Tecnologias"><br>
+                        <input type="submit" class="botonesWIP" value="PHPDoc" name="PHPDoc"><br>
+                        <input type="submit" class="botonesWIP" value="RSS" name="RSS"><br>
+                        <input type="submit" class="botonesWIP" value="Doxygen" name="Doxygen">
+                        <a href="http://daw213.sauces.local/index.html"><p>&copy; 2021 Beatriz Merino Macía.</p></a>
+                    </form>
                 </div>
             </aside>
             <div id="fh5co-main">

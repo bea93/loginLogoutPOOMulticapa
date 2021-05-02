@@ -4,7 +4,7 @@
 ***Descripción: Aplicación Login Logout Multicapa orientada a objetos***
 
 #### *Fecha Inicio: 21/04/2020*
-#### *Última Actualización: *
+#### *Última Actualización: 02/05/2021*
 
 ***Autor: Beatriz Merino Macía***
 

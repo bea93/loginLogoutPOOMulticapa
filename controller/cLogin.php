@@ -1,4 +1,6 @@
 <?php
+$_SESSION['paginaAnterior'] = $controladores['login'];
+$_SESSION['paginaEnCursoSinRegistro'] = $controladores['login'];
 //Defino e inicializo la constante a 1 para los campos que son obligatorios
 define("OBLIGATORIO", 1); 
 
@@ -14,6 +16,37 @@ if (isset($_REQUEST['Registrarse'])) {
     //Guardamos en la variable de sesión 'pagina' la ruta del controlador del registro
     $_SESSION['paginaEnCursoSinRegistro'] = $controladores['registro']; 
     header('Location: index.php');
+    exit;
+}
+
+//Si se ha pulsado en Tecnologías
+if (isset($_REQUEST['Tecnologias'])) {
+    //Guardamos en la variable de sesión 'pagina' la ruta del controlador del wip
+    $_SESSION['paginaEnCursoSinRegistro'] = $controladores['wip'];
+    header("Location: index.php");
+    exit;
+}
+//Si se ha pulsado en PHPDoc
+if (isset($_REQUEST['PHPDoc'])) {
+    //Guardamos en la variable de sesión 'pagina' la ruta del controlador del wip
+    $_SESSION['paginaEnCurso'] = $controladores['wip'];
+    header("Location: index.php");
+    exit;
+}
+
+//Si se ha pulsado en RSS
+if (isset($_REQUEST['RSS'])) {
+    //Guardamos en la variable de sesión 'pagina' la ruta del controlador del wip
+    $_SESSION['paginaEnCurso'] = $controladores['wip'];
+    header("Location: index.php");
+    exit;
+}
+
+//Si se ha pulsado en Doxygen
+if (isset($_REQUEST['Doxygen'])) {
+    //Guardamos en la variable de sesión 'pagina' la ruta del controlador del wip
+    $_SESSION['paginaEnCurso'] = $controladores['wip'];
+    header("Location: index.php");
     exit;
 }
 

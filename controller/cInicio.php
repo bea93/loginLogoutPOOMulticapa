@@ -35,6 +35,13 @@ if (isset($_REQUEST['BorrarCuenta'])) {
     header('Location: index.php');
     exit;
 }
+//Si se ha pulsado el botón Borrar Cuenta
+if (isset($_REQUEST['MtoDepartamentos'])) {
+    //Guardamos en la variable de sesión 'pagina' la ruta del controlador del editor de contraseña
+    $_SESSION['paginaEnCurso'] = $controladores['wip'];
+    header('Location: index.php');
+    exit;
+}
 
 //Si se ha pulsado en Tecnologías
 if (isset($_REQUEST['Tecnologias'])) {

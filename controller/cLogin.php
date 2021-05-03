@@ -1,6 +1,4 @@
 <?php
-$_SESSION['paginaAnterior'] = $controladores['login'];
-$_SESSION['paginaEnCursoSinRegistro'] = $controladores['login'];
 //Defino e inicializo la constante a 1 para los campos que son obligatorios
 define("OBLIGATORIO", 1); 
 
@@ -90,3 +88,6 @@ if ($entradaOK) {
 $vistaEnCurso = $vistas['login']; 
 
 require_once $vistas['layout'];
+
+$_SESSION['paginaAnterior'] = $controladores['login'];
+$_SESSION['paginaEnCursoSinRegistro'] = $controladores['login'];
